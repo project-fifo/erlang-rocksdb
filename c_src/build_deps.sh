@@ -73,12 +73,12 @@ case "$1" in
 
     get-deps)
         if [ ! -d rocksdb ]; then
-            ROCKSDBURL="https://gitlab.com/barrel-db/rocksdb/repository/archive.tar.gz?ref=v$ROCKSDB_VSN"
+            ROCKSDBURL="https://github.com/facebook/rocksdb/archive/v$ROCKSDB_VSN.tar.gz"
             ROCKSDBTARGZ="rocksdb-$ROCKSDB_VSN.tar.gz"
             echo Downloading $ROCKSDBURL...
             curl -L -o $ROCKSDBTARGZ $ROCKSDBURL
             tar -xzf $ROCKSDBTARGZ
-            mv rocksdb-$ROCKSDB_PREFIX-* rocksdb
+            mv rocksdb-$ROCKSDB_VSN rocksdb
             patch -p0 < rocksdb-util-env_posix.cc.patch
         fi
         ;;
